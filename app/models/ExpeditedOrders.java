@@ -52,6 +52,10 @@ public class ExpeditedOrders extends UntypedActor {
 		Order order = (Order)message;
 		Logger.info("Writing " + order);
 		for(Chunks.Out<String> out: outs) {
+		  // Send enough data to be displayed
+		  char[] buffer = new char[1024 * 5];
+		  Arrays.fill(buffer, ' ');
+		  out.write(new String(buffer));
 		  out.write("<p>" +
      	   order.toString() + "</p>"); 
 		} 
